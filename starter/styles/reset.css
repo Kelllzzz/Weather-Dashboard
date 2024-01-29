@@ -1,0 +1,5 @@
+/* styling the horizontal line element */
+hr.new1 {
+    border-top: 2px solid green;
+    width: 200%
+   }
