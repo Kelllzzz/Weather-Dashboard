@@ -47,12 +47,12 @@
         <section id="today" class="mt-3" role="region" aria-live="polite">
           <div class="current-weather bg-light p-3 card border-2  text-black px4">
             <div class="mt-3 d-flex justify-content-between">
-              <div>
+              <div class="currentDay">
                 <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="Weather Icon">
                 <h3 class="fw-bold">_____ ( _____ )</h3>
-                <h6 class="mt-3 my-3">Temp: __ ℃</h6>
-                <h6 class="mt-3 my-3">Wind: __ m/s</h6>
-                <h6 class="mt-3 my-3">Humidity: __ %</h6>
+                <h6 id="temp" class="mt-3 my-3">Temp: __ ℃</h6>
+                <h6 id="wind" class="mt-3 my-3">Wind: __ m/s</h6>
+                <h6 id="hum" class="mt-3 my-3">Humidity: __ %</h6>
               </div>
             </div>
           </div>
@@ -61,56 +61,56 @@
         <!-- Styling for the 5day forecast  -->
         <section id="forecast" class="row mt-3" role="region" aria-live="polite">
           <h4 class="fw-bold my-4">5-Day Forecast</h4>
-            <div class="col mb-2">
-              <div class="card border-0 bg-primary text-white">
-                <div class="card-body">
-                  <h5 class="card-title">( _____ )</h5>
-                  <h6 class="card-text mt-3 my-3">Temp: __ ℃</h6>
-                  <h6 class="my-3">Wind: __ m/s</h6>
-                  <h6 class="my-3">Humidity: __ %</h6>
-                </div>
+          <div class="col mb-2">
+            <div class="card border-0 bg-primary text-white">
+              <div class="card-body">
+                <h5 class="card-title">( _____ )</h5>
+                <h6 id="temp" class="mt-3 my-3">Temp: __ ℃</h6>
+                <h6 id="wind" class="mt-3 my-3">Wind: __ m/s</h6>
+                <h6 id="hum" class="mt-3 my-3">Humidity: __ %</h6>
               </div>
             </div>
-            <div class="col mb-2">
-              <div class="card border-0 bg-warning text-white">
-                <div class="card-body">
-                  <h5 class="card-title">( _____ )</h5>
-                  <h6 class="card-text mt-3 my-3">Temp: __ ℃</h6>
-                  <h6 class="my-3">Wind: __ m/s</h6>
-                  <h6 class="my-3">Humidity: __ %</h6>
-                </div>
+          </div>
+          <div class="col mb-2">
+            <div class="card border-0 bg-warning text-white">
+              <div class="card-body">
+                <h5 class="card-title">( _____ )</h5>
+                <h6 id="temp" class="mt-3 my-3">Temp: __ ℃</h6>
+                <h6 id="wind" class="mt-3 my-3">Wind: __ m/s</h6>
+                <h6 id="hum" class="mt-3 my-3">Humidity: __ %</h6>
               </div>
             </div>
-            <div class="col mb-2">
-              <div class="card border-0 bg-dark text-white">
-                <div class="card-body">
-                  <h5 class="card-title">( _____ )</h5>
-                  <h6 class="card-text mt-3 my-3">Temp: __ ℃</h6>
-                  <h6 class="my-3">Wind: __ m/s</h6>
-                  <h6 class="my-3">Humidity: __ %</h6>
-                </div>
+          </div>
+          <div class="col mb-2">
+            <div class="card border-0 bg-dark text-white">
+              <div class="card-body">
+                <h5 class="card-title">( _____ )</h5>
+                <h6 id="temp" class="mt-3 my-3">Temp: __ ℃</h6>
+                <h6 id="wind" class="mt-3 my-3">Wind: __ m/s</h6>
+                <h6 id="hum" class="mt-3 my-3">Humidity: __ %</h6>
               </div>
             </div>
-            <div class="col mb-2">
-              <div class="card border-0 bg-info text-white">
-                <div class="card-body p-3 text-white">
-                  <h5 class="card-title">( _____ )</h5>
-                  <h6 class="card-text mt-3 my-3">Temp: __ ℃</h6>
-                  <h6 class="my-3">Wind: __ m/s</h6>
-                  <h6 class="my-3">Humidity: __ %</h6>
-                </div>
+          </div>
+          <div class="col mb-2">
+            <div class="card border-0 bg-info text-white">
+              <div class="card-body p-3 text-white">
+                <h5 class="card-title">( _____ )</h5>
+                <h6 id="temp" class="mt-3 my-3">Temp: __ ℃</h6>
+                <h6 id="wind" class="mt-3 my-3">Wind: __ m/s</h6>
+                <h6 id="hum" class="mt-3 my-3">Humidity: __ %</h6>
               </div>
             </div>
-            <div class="col mb-2">
-              <div class="card border-0 bg-success text-white">
-                <div class="card-body">
-                  <h5 class="card-title">( _____ )</h5>
-                  <h6 class="card-text mt-3 my-3">Temp: __℃ </h6>
-                  <h6 class="my-3">Wind: __ m/s</h6>
-                  <h6 class="my-3">Humidity: __ %</h6>
-                </div>
+          </div>
+          <div class="col mb-2">
+            <div class="card border-0 bg-success text-white">
+              <div class="card-body">
+                <h5 class="card-title">( _____ )</h5>
+                <h6 id="temp" class="mt-3 my-3">Temp: __ ℃</h6>
+                <h6 id="wind" class="mt-3 my-3">Wind: __ m/s</h6>
+                <h6 id="hum" class="mt-3 my-3">Humidity: __ %</h6>
               </div>
             </div>
+          </div>
         </section>
       </div>
     </div>

@@ -5,5 +5,7 @@ var la = 0;
 var lo = 0;
 const submit = $("#search-button");
 var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}`;
+var cities = [];
+
 
 
