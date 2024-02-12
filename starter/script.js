@@ -43,8 +43,51 @@ for (let index = 0; index < data.list.length; index++) {
   
 }
     });
-
 }
+
+// Function for displaying weather data
+function renderButtons() {
+
+  // Deletes the cities prior to adding new cities otherwise you will have repeat buttons
+  $("#history").empty();
+
+  // Loops through the array of citys checked
+  for (var i = 0; i < cities.length; i++) {
+
+    // Then dynamicaly generates buttons for each city in the array
+    var a = $("<button>");
+    // Adds a class of city to our button
+    a.addClass("city");
+    // Added a data-attribute
+    a.attr("data-name", cities[i]);
+    // Provided the initial button text
+    a.text(cities[i]);
+    // Added the button to the buttons-view div
+    $("#history").append(a);
+  }
+}
+
+// This function handles events where the search button is clicked
+$("#search-button").on("click", function (event) {
+  event.preventDefault();
+
+  // This line of code will grab the input from the textbox
+  var city = $("#search-input").val().trim();
+
+  // The city from the textbox is then added to our array
+  cities.push(city);
+  console.log(city);
+  displayWeatherInfo(city);
+
+  // Calling renderButtons which handles the processing of our city array
+  renderButtons();
+});
+
+// Adding click event listeners to all elements with a class of "city"
+$(document).on("click", ".list-group", displayWeatherInfo);
+
+//Calling the renderButtons function to display the initial buttons
+renderButtons();
 
 
 
