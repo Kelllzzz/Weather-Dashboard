@@ -98,9 +98,9 @@ function currentWeather() {
     })
     .then(function (data) {
       console.log(data);
-      var today = new Date()
-      var date = document.getElementById("date");
-      date.innerText = dateFunction(today);
+      //Today's date
+      var todaysDate = dayjs().format("dddd, DD MMMM YYYY");
+      $("#date").text(todaysDate);
       var temp = document.getElementById("temp");
       temp.textContent = `Temp: ${data.main.temp}℃`;
       var wind = document.getElementById("wind")
@@ -112,15 +112,4 @@ function currentWeather() {
 
 }
 
-function dateFunction(d) {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const day = days[d.getDay()];
-const date = d.getDate();
-const month = months[d.getMonth()];
-const year = d.getFullYear();
-
-return `${day}, ${date} ${month}, ${year}`
-
-}
 
