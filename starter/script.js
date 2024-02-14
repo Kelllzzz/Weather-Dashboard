@@ -35,13 +35,13 @@ function getWeatherInfo() {
     })
     .then(function (data) {
       console.log(data);
-for (let index = 0; index < data.list.length; index++) {
-  const element = data.list[index];
-  if (element.dt_txt.includes("12:00:00")) {
-   
-  }
-  
-}
+      for (let index = 0; index < data.list.length; index++) {
+        const element = data.list[index];
+        if (element.dt_txt.includes("12:00:00")) {
+          console.log(element);
+        }
+
+      }
     });
 }
 
@@ -85,9 +85,5 @@ $("#search-button").on("click", function (event) {
 
 // Adding click event listeners to all elements with a class of "city"
 $(document).on("click", ".list-group", displayWeatherInfo);
-
-//Calling the renderButtons function to display the initial buttons
-renderButtons();
-
 
 
