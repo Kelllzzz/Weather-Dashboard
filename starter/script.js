@@ -112,5 +112,15 @@ function currentWeather() {
 
 }
 
+function dateFunction(d) {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const day = days[d.getDay()];
+const date = d.getDate();
+const month = months[d.getMonth()];
+const year = d.getFullYear();
 
+return `${day}, ${date} ${month}, ${year}`
+
+}
 
