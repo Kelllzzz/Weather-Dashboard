@@ -86,4 +86,31 @@ $("#search-button").on("click", function (event) {
 // Adding click event listeners to all elements with a class of "city"
 $(document).on("click", ".list-group", displayWeatherInfo);
 
+//Calling the renderButtons function to display the initial buttons
+renderButtons();
+var queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}`;
+
+function currentWeather() {
+  var currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`
+  fetch(currentQueryURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var today = new Date()
+      var date = document.getElementById("date");
+      date.innerText = dateFunction(today);
+      var temp = document.getElementById("temp");
+      temp.textContent = `Temp: ${data.main.temp}℃`;
+      var wind = document.getElementById("wind")
+      wind.textContent = `Wind: ${data.wind.speed}m/s`;
+      var humidity = document.getElementById("hum");
+      humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    });
+
+
+}
+
+
 
