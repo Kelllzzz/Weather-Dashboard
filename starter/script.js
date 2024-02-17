@@ -1,10 +1,12 @@
 // Defining Variables
+var daysForecast = document.querySelector(".days-forecast")
+var currentForecast = document.querySelector(".current-weather")
 const myApiKey = "7097c74eef259450827e90a52b7f0e67";
 var city = $("#search-input").val().trim();
 var la = 0;
 var lo = 0;
 const submit = $("#search-button");
-var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}`;
+var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
 var cities = [];
 // displayWeatherInfo function re-renders the HTML to display the appropriate content
 function displayWeatherInfo(city) {
@@ -27,6 +29,13 @@ function displayWeatherInfo(city) {
     });
 
 }
+
+// function cardColors() {
+//   for (let i = 0; i < 5; i++) {
+//     const element = array[i];
+
+//   }
+// }
 function getWeatherInfo() {
 
   fetch(queryWeatherURL)
@@ -35,12 +44,28 @@ function getWeatherInfo() {
     })
     .then(function (data) {
       console.log(data);
-      for (let index = 0; index < data.list.length; index++) {
-        const element = data.list[index];
+      for (let i = 0; i < data.list.length; i++) {
+        const element = data.list[i];
         if (element.dt_txt.includes("12:00:00")) {
           console.log(element);
-        }
+          var weatherCard = `
+        <div class="col mb-3">
+          <div class="card border-0 bg-primary text-white">
+            <div class="card-body">
+              <h5 class="card-title">(${data.list[i].dt_txt.split(" ")[0]})</h5>
+              <img src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" Alt="Weather Icon">
+              <h6 id="temp" class="mt-3 my-3">Temp: ${data.list[i].main.temp}℃</h6>
+              <h6 id="wind" class="my-3">Wind: ${data.list[i].wind.speed}m/s</h6>
+              <h6 id="hum" class="my-3">Humidity: ${data.list[i].main.humidity} %</h6>
+            </div>
+          </div>
+        </div>
+          `;
+          var weatherDiv = document.createElement("section");
+          weatherDiv.innerHTML = weatherCard;
+          daysForecast.appendChild(weatherDiv);
 
+        }
       }
     });
 }
@@ -71,9 +96,15 @@ function renderButtons() {
 $("#search-button").on("click", function (event) {
   event.preventDefault();
 
+  // if (event.cod === "404") {
+  //   const err = document.querySelector("#search-input")
+  //   err.textContent = "Please enter a valid city" 
+  //   return
+  // } else {
   // This line of code will grab the input from the textbox
   var city = $("#search-input").val().trim();
-
+  // city.innerText = `${"#search-input"}`
+  // }
   // The city from the textbox is then added to our array
   cities.push(city);
   console.log(city);
@@ -88,7 +119,7 @@ $(document).on("click", ".list-group", displayWeatherInfo);
 
 //Calling the renderButtons function to display the initial buttons
 renderButtons();
-var queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}`;
+var queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}&units=metric`;
 
 function currentWeather() {
   var currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`
@@ -98,15 +129,33 @@ function currentWeather() {
     })
     .then(function (data) {
       console.log(data);
-      //Today's date
-      var todaysDate = dayjs().format("dddd, DD MMMM YYYY");
+      console.log(data.name);
+      var place = data.name;
+      $(".day").append(place);
+      // Today's date
+      let todaysDate = dayjs().format("dddd, DD MMMM YYYY");
       $("#date").text(todaysDate);
+      // let todaysDate = `${data.list[i].dt_txt.split(" ")[0]}`
+      // $("#date").append(todaysDate);
       var temp = document.getElementById("temp");
       temp.textContent = `Temp: ${data.main.temp}℃`;
       var wind = document.getElementById("wind")
       wind.textContent = `Wind: ${data.wind.speed}m/s`;
       var humidity = document.getElementById("hum");
       humidity.textContent = `Humidity: ${data.main.humidity}%`;
+
+    //   const currentWeather = `<div class="currentDay">
+    //   <img src="https://openweathermap.org/img/w/"${data.list[i].weather[0].icon}.png" Alt="Weather Icon">
+    //   <h3 id="date" class="fw-bold">${data.list[i].name} (${data.list[i].dt_txt.split(" ")[0]}  )</h3>
+    //   <h6 id="temp" class="mt-3 my-3">Temp: ${data.list[i].main.temp}℃</h6>
+    //   <h6 id="wind" class="my-3">Wind: ${data.list[i].wind.speed}m/s</h6>
+    //   <h6 id="hum" class="my-3">Humidity: ${data.list[i].main.humidity}%</h6>
+    // </div>`;
+
+    // var todaysWeather = document.createElement("section");
+    // currentDiv.innerHTML = currentWeather;
+    // currentForecast.appendChild(currentDiv);
+
     });
 
 

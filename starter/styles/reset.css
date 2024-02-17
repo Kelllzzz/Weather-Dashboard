@@ -1,26 +1,22 @@
 /* styling the horizontal line element */
-hr.new1 {
+/* hr.new1 {
   border-top: 2px solid green;
   width: 200%;
   grid-area: 1 / 1 / 2 / 2;
-}
+} */
 
 .bg-image {
   background-image: url('../Images/Background.jpg');
   height: 100vh;
-  /* Adjust as needed */
   background-position: center;
   /* Center the image */
   background-repeat: no-repeat;
   /* Prevent tiling of the image */
   background-size: cover;
   /* Cover the entire area of the element */
-}
+} 
 
-.input-group-append {
-  display: grid;
-  grid-template-columns: 5, 1fr;
-  grid-template-rows: 5, 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+#search-input{
+  width:  100%; /* Set the button width to  100% of its container*/
+  height: 40px;
 }
