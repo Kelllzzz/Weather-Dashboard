@@ -85,7 +85,7 @@ function renderButtons() {
   // Loops through the array of citys checked
   for (var i = 0; i < cities.length; i++) {
     // Then dynamicaly generates buttons for each city in the array
-    var a = $("<button mt-2 my-2>");
+    var a = $("<button class='button-spacing'>Button Text</button>");
     // Adds a class of city to our button
     a.addClass("city");
     // Added a data-attribute

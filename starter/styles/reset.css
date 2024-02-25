@@ -24,3 +24,11 @@
 .day{
   font-size: x-large;
 }
+
+.button-spacing {
+  margin-right:  10px; 
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: cadetblue;
+  border-radius: 5px;
+}
