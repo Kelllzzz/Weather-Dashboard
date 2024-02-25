@@ -30,6 +30,7 @@ function displayWeatherInfo(city) {
       var { lon, lat } = cityObject;
       la = lat;
       lo = lon;
+      
       queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
       getWeatherInfo();
       currentWeather()
@@ -84,7 +85,7 @@ function renderButtons() {
   // Loops through the array of citys checked
   for (var i = 0; i < cities.length; i++) {
     // Then dynamicaly generates buttons for each city in the array
-    var a = $("<button>");
+    var a = $("<button mt-2 my-2>");
     // Adds a class of city to our button
     a.addClass("city");
     // Added a data-attribute
@@ -104,7 +105,7 @@ $("#search-button").on("click", function (event) {
     alert("Please enter a valid city");
     return
   }
-  if (!city) {
+  if (city === undefined) {
     alert("Please enter a valid city");
     return
   }
@@ -120,6 +121,7 @@ $("#search-button").on("click", function (event) {
   cities.push(city);
   console.log(city);
   displayWeatherInfo(city);
+
   // Store userinput in localstorage
   localStorage.setItem("cities", JSON.stringify(cities));
 
