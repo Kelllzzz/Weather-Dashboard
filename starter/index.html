@@ -33,12 +33,16 @@
                   aria-label="submit search">
                   Search
                 </button>
+                <button class="btn btn-success py-2 w-20 mt-3 mb-2 rounded-2">
+                  Clear History
+                </button>
                 <hr />
               </div>
             </div>
           </form>
           <div class="list-group" id="history"></div>
         </aside>
+
         <!-- Styling for current forecast -->
         <div class="col-xxl-9 col-md-8 mt-md-1 mt-4 pe-lg-4">
           <section id="today" class="mt-3" role="region" aria-live="polite">
@@ -46,8 +50,7 @@
               <div class="mt-3 d-flex justify-content-between">
                 <div class="currentDay">
                   <p class="day text-black fw-bolder"></p>
-                  <img src="https://openweathermap.org/img/wn/04d@2x.png" class=" icon" alt="Weather Icon">
-                  <h3 id="date" class="fw-bold">_____ ( _____ )</h3>
+                  <h5 id="date" class="fw-bold">_____ ( _____ )</h5>
                   <h6 id="temp" class="mt-3 my-3">Temp: ℃</h6>
                   <h6 id="wind" class="my-3">Wind: m/s</h6>
                   <h6 id="hum" class="my-3">Humidity: %</h6>
@@ -56,11 +59,12 @@
             </div>
           </section>
         </div>
+
         <!-- Styling for the 5day forecast  -->
         <section id="forecast" class="row mt-2" role="region" aria-live="polite">
           <h4 class="fw-bold text-white my-4">5-Day Forecast</h4>
           <div class="days-forecast row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 justify-content-between">
-            <!-- weather cards for 5days will go here -->
+            <!-- Weather cards for 5 day forecast will go here -->
           </div>
         </section>
       </div>

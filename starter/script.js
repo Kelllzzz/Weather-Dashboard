@@ -7,6 +7,7 @@ var city = $("#search-input").val().trim();
 var la = 0;
 var lo = 0;
 const submit = $("#search-button");
+// To store usersearches
 if (localStorage.getItem("cities")) {
   cities = JSON.parse(localStorage.getItem("cities"));
   renderButtons();
@@ -56,7 +57,7 @@ function getWeatherInfo() {
         <div class="card border-0 ${colors[i % colors.length]} text-white">
             <div class="card-body">
               <h5 class="card-title">(${data.list[i].dt_txt.split(" ")[0]})</h5>
-              <img src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" Alt="Weather Icon">
+            <img src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" Alt="Weather Icon">
               <h6 id="desc" class="mt-3 my-3">${data.list[i].weather[0].description}</h6>
               <h6 id="temp" class="mt-3 my-3">Temp: ${data.list[i].main.temp}℃</h6>
               <h6 id="wind" class="my-3">Wind: ${data.list[i].wind.speed}m/s</h6>
@@ -103,7 +104,7 @@ $("#search-button").on("click", function (event) {
     alert("Please enter a valid city");
     return
   }
-  if (!city.) {
+  if (!city) {
     alert("Please enter a valid city");
     return
   }
@@ -119,6 +120,7 @@ $("#search-button").on("click", function (event) {
   cities.push(city);
   console.log(city);
   displayWeatherInfo(city);
+  // Store userinput in localstorage
   localStorage.setItem("cities", JSON.stringify(cities));
 
   // Calling renderButtons which handles the processing of our city array
@@ -149,6 +151,7 @@ function currentWeather() {
       // Today's date
       let todaysDate = dayjs().format("dddd, DD MMMM YYYY");
       $("#date").text(todaysDate);
+      // To create weather card for current day
       var weatherIcon = document.querySelector('.day');
       var img = document.createElement("img");
       img.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
