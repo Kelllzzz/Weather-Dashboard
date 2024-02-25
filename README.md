@@ -12,7 +12,7 @@ N/A.
 
 To use this website,the following image shows the web application's appearance and functionality:
 
-![Weather forecast for the current day and subsequently a 5 day weather forecast displays when a city is searched, the city then displays as a button on the page and the forecast can be displayed when the button is clicked.](<img width="958" alt="Screenshot 2024-02-25 211725" src="https://github.com/Kelllzzz/Weather-Dashboard/assets/117757450/d7a0fa5e-b9d0-431c-a9d9-e4273f3895bc">)
+![Weather forecast for the current day and subsequently a 5 day weather forecast displays when a city is searched, the city then displays as a button on the page and the forecast can be displayed when the button is clicked.](./starter/Images/Screenshot%202024-02-25%20211725.png)
 
 
 ## Access
