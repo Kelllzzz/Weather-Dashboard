@@ -7,7 +7,7 @@ var city = $("#search-input").val().trim();
 var la = 0;
 var lo = 0;
 const submit = $("#search-button");
-// To store usersearches
+// To maintain user search history upon refresh
 if (localStorage.getItem("cities")) {
   cities = JSON.parse(localStorage.getItem("cities"));
   renderButtons();
@@ -166,4 +166,10 @@ function currentWeather() {
     });
 }
 
+// To clear search history
+var clearInterval = document.getElementById('clear-history');
+clearInterval.addEventListener("click", clear)
 
+function clear() {
+    localStorage.removeItem("cities");
+}
