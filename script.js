@@ -12,12 +12,12 @@ if (localStorage.getItem("cities")) {
   cities = JSON.parse(localStorage.getItem("cities"));
   renderButtons();
 }
-var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
+var queryWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
 
 // displayWeatherInfo function re-renders the HTML to display the appropriate content
 function displayWeatherInfo(city) {
 
-  var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + myApiKey;
+  var queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + myApiKey;
 
   // Creates Fetch call for the button being clicked
   fetch(queryURL)
@@ -31,7 +31,7 @@ function displayWeatherInfo(city) {
       la = lat;
       lo = lon;
       
-      queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
+      queryWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
       getWeatherInfo();
       currentWeather()
 
@@ -136,7 +136,7 @@ $(document).on("click", ".list-group", (event) => {
 
 //Calling the renderButtons function to display the initial buttons
 renderButtons();
-var queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}&units=metric`;
+var queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}&units=metric`;
 
 function currentWeather() {
   var currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`
