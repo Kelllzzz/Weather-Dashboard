@@ -7,7 +7,7 @@
 
 .bg-image {
   background-image: url('../Images/Background.jpg');
-  height: 100vh;
+  height: 150vh;
   background-position: center;
   /* Center the image */
   background-repeat: no-repeat;
@@ -19,4 +19,8 @@
 #search-input{
   width:  100%; /* Set the button width to  100% of its container*/
   height: 40px;
+}
+
+.day{
+  font-size: large;
 }

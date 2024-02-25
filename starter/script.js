@@ -1,4 +1,5 @@
 // Defining Variables
+var cities = [];
 var daysForecast = document.querySelector(".days-forecast")
 var currentForecast = document.querySelector(".current-weather")
 const myApiKey = "7097c74eef259450827e90a52b7f0e67";
@@ -6,8 +7,12 @@ var city = $("#search-input").val().trim();
 var la = 0;
 var lo = 0;
 const submit = $("#search-button");
+if (localStorage.getItem("cities")) {
+  cities = JSON.parse(localStorage.getItem("cities"));
+  renderButtons();
+}
 var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
-var cities = [];
+
 // displayWeatherInfo function re-renders the HTML to display the appropriate content
 function displayWeatherInfo(city) {
 
@@ -24,18 +29,14 @@ function displayWeatherInfo(city) {
       var { lon, lat } = cityObject;
       la = lat;
       lo = lon;
+      queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${la}&lon=${lo}&appid=${myApiKey}&units=metric`;
       getWeatherInfo();
       currentWeather()
+
     });
 
 }
 
-// function cardColors() {
-//   for (let i = 0; i < 5; i++) {
-//     const element = array[i];
-
-//   }
-// }
 function getWeatherInfo() {
 
   fetch(queryWeatherURL)
@@ -44,21 +45,24 @@ function getWeatherInfo() {
     })
     .then(function (data) {
       console.log(data);
+      daysForecast.innerHTML = "";
+      const colors = ["bg-dark", "bg-primary", "bg-warning", "bg-info", "bg-success"];
       for (let i = 0; i < data.list.length; i++) {
         const element = data.list[i];
         if (element.dt_txt.includes("12:00:00")) {
           console.log(element);
-          var weatherCard = `
-        <div class="col mb-3">
-          <div class="card border-0 bg-primary text-white">
+          var weatherCard = ` 
+        <div class="col mb-3 justify-content-between">
+        <div class="card border-0 ${colors[i % colors.length]} text-white">
             <div class="card-body">
               <h5 class="card-title">(${data.list[i].dt_txt.split(" ")[0]})</h5>
               <img src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" Alt="Weather Icon">
+              <h6 id="desc" class="mt-3 my-3">${data.list[i].weather[0].description}</h6>
               <h6 id="temp" class="mt-3 my-3">Temp: ${data.list[i].main.temp}℃</h6>
               <h6 id="wind" class="my-3">Wind: ${data.list[i].wind.speed}m/s</h6>
               <h6 id="hum" class="my-3">Humidity: ${data.list[i].main.humidity} %</h6>
             </div>
-          </div>
+           </div>
         </div>
           `;
           var weatherDiv = document.createElement("section");
@@ -78,7 +82,6 @@ function renderButtons() {
 
   // Loops through the array of citys checked
   for (var i = 0; i < cities.length; i++) {
-
     // Then dynamicaly generates buttons for each city in the array
     var a = $("<button>");
     // Adds a class of city to our button
@@ -95,27 +98,37 @@ function renderButtons() {
 // This function handles events where the search button is clicked
 $("#search-button").on("click", function (event) {
   event.preventDefault();
-
-  // if (event.cod === "404") {
-  //   const err = document.querySelector("#search-input")
-  //   err.textContent = "Please enter a valid city" 
-  //   return
-  // } else {
-  // This line of code will grab the input from the textbox
   var city = $("#search-input").val().trim();
-  // city.innerText = `${"#search-input"}`
-  // }
+  if (city === "") {
+    alert("Please enter a valid city");
+    return
+  }
+  if (!city.) {
+    alert("Please enter a valid city");
+    return
+  }
+
+  else {
+    // This line of code will grab the input from the textbox
+    city.innerText = `${"#search-input"}`
+
+    // Clear the input field
+    $("#search-input").val('');
+  }
   // The city from the textbox is then added to our array
   cities.push(city);
   console.log(city);
   displayWeatherInfo(city);
+  localStorage.setItem("cities", JSON.stringify(cities));
 
   // Calling renderButtons which handles the processing of our city array
   renderButtons();
 });
 
 // Adding click event listeners to all elements with a class of "city"
-$(document).on("click", ".list-group", displayWeatherInfo);
+$(document).on("click", ".list-group", (event) => {
+  displayWeatherInfo($(event.target).attr("data-name"))
+});
 
 //Calling the renderButtons function to display the initial buttons
 renderButtons();
@@ -131,12 +144,15 @@ function currentWeather() {
       console.log(data);
       console.log(data.name);
       var place = data.name;
+      $(".day").empty();
       $(".day").append(place);
       // Today's date
       let todaysDate = dayjs().format("dddd, DD MMMM YYYY");
       $("#date").text(todaysDate);
-      // let todaysDate = `${data.list[i].dt_txt.split(" ")[0]}`
-      // $("#date").append(todaysDate);
+      var weatherIcon = document.querySelector('.day');
+      var img = document.createElement("img");
+      img.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+      weatherIcon.appendChild(img);
       var temp = document.getElementById("temp");
       temp.textContent = `Temp: ${data.main.temp}℃`;
       var wind = document.getElementById("wind")
@@ -144,21 +160,7 @@ function currentWeather() {
       var humidity = document.getElementById("hum");
       humidity.textContent = `Humidity: ${data.main.humidity}%`;
 
-    //   const currentWeather = `<div class="currentDay">
-    //   <img src="https://openweathermap.org/img/w/"${data.list[i].weather[0].icon}.png" Alt="Weather Icon">
-    //   <h3 id="date" class="fw-bold">${data.list[i].name} (${data.list[i].dt_txt.split(" ")[0]}  )</h3>
-    //   <h6 id="temp" class="mt-3 my-3">Temp: ${data.list[i].main.temp}℃</h6>
-    //   <h6 id="wind" class="my-3">Wind: ${data.list[i].wind.speed}m/s</h6>
-    //   <h6 id="hum" class="my-3">Humidity: ${data.list[i].main.humidity}%</h6>
-    // </div>`;
-
-    // var todaysWeather = document.createElement("section");
-    // currentDiv.innerHTML = currentWeather;
-    // currentForecast.appendChild(currentDiv);
-
     });
-
-
 }
 
 
